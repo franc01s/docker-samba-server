@@ -1,13 +1,12 @@
 samba:
-  image: joebiellik/samba-server
+  image: francois/dockersambaserver
 
   volumes:
     # You must provide a Samba config file
     - ./smb.conf:/config/smb.conf
 
     # Shares
-    - ~/projects:/mnt/projects
-    - ~/videos:/mnt/videos:ro
+    - /mnt:/mnt/shared
 
   ports:
     - "137:137/udp"
@@ -16,15 +15,15 @@ samba:
     - "445:445/tcp"
 
   environment:
-    - USERNAME=joe
-    - PASSWORD=samba
+    - USERNAME=itsstor
+    - PASSWORD=test1234
 
     # Defaults
     - UID=1000
     - GID=1000
     - GROUP=samba
     - CONFIG=/config/smb.conf
-    
+
   deploy:
     replicas: 6
     update_config:

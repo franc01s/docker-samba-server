@@ -9,5 +9,4 @@ addgroup -g ${GID} ${GROUP} > /dev/null 2&>1
 adduser -S -G ${GROUP} -u ${UID} -H -D ${USERNAME}
 echo "${PASSWORD}" | tee - | smbpasswd -s -c "${CONFIG}" -a ${USERNAME}
 
-nmbd --foreground --log-stdout --configfile="${CONFIG}" &
 smbd --foreground --log-stdout --configfile="${CONFIG}"
