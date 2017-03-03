@@ -24,3 +24,11 @@ samba:
     - GID=1000
     - GROUP=samba
     - CONFIG=/config/smb.conf
+    
+  deploy:
+    replicas: 6
+    update_config:
+      parallelism: 2
+      delay: 10s
+    restart_policy:
+      condition: on-failure
