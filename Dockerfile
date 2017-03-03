@@ -25,6 +25,8 @@ RUN set -xe \
 
 COPY run.s6 /etc/services.d/samba/run
 COPY finish.s6 /etc/services.d/samba/finish
+COPY smb.conf /config/smb.conf
+
 
 EXPOSE 137/udp 138/udp 139/tcp 445/tcp
 
