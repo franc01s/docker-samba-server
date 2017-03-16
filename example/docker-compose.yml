@@ -1,33 +1,30 @@
-samba:
-  image: francois/dockersambaserver
+version: '3'
+services:
+  samba:
+    image: francois/dockersambaserver
+    volumes:
+      # You must provide a Samba config file
+      - ./smb.conf:/config/smb.conf
+      # Shares
+      - /mnt:/mnt/shared
+    ports:
+         - "137:137/udp"
+         - "138:138/udp"
+         - "139:139/tcp"
+         - "445:445/tcp"
+    environment:
+         - USERNAME=itsstor
+         - PASSWORD=test1234
 
-  volumes:
-    # You must provide a Samba config file
-    - ./smb.conf:/config/smb.conf
-
-    # Shares
-    - /mnt:/mnt/shared
-
-  ports:
-    - "137:137/udp"
-    - "138:138/udp"
-    - "139:139/tcp"
-    - "445:445/tcp"
-
-  environment:
-    - USERNAME=itsstor
-    - PASSWORD=test1234
-
-    # Defaults
-    - UID=1000
-    - GID=1000
-    - GROUP=samba
-    - CONFIG=/config/smb.conf
-
-  deploy:
-    replicas: 6
-    update_config:
-      parallelism: 2
-      delay: 10s
-    restart_policy:
-      condition: on-failure
+         # Defaults
+         - UID=1000
+         - GID=1000
+         - GROUP=samba
+         - CONFIG=/config/smb.conf
+    deploy:
+        replicas: 2
+        update_config:
+          parallelism: 2
+          delay: 10s
+        restart_policy:
+          condition: on-failure
