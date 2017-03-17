@@ -7,6 +7,7 @@ ENV GROUP samba
 ENV PASSWORD password
 ENV CONFIG /config/smb.conf
 
+RUN set -xe \
 && cd /tmp \
 	&& wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz \
 	&& wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz.sig \
@@ -16,7 +17,7 @@ ENV CONFIG /config/smb.conf
 	&& tar xzf s6-overlay-amd64.tar.gz -C / \
 	&& apk del gpg \
 	&& rm -rf /tmp/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz.sig /root/.gnupg /var/cache/apk/*
-	
+
 ENV S6_VERSION 1.18.1.5
 
 COPY run.s6 /etc/services.d/samba/run
