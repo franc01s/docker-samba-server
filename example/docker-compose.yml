@@ -1,7 +1,7 @@
 version: '3'
 services:
   samba:
-    image: francois/dockersambaserver
+    image: franc01s/dockersambaserver
     volumes:
       # You must provide a Samba config file
       - ./smb.conf:/config/smb.conf
