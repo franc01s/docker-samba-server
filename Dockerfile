@@ -10,7 +10,7 @@ ENV S6_VERSION 1.19.1.1
 
 RUN set -xe \
 && cd /tmp \
-    && apk add --update ca-certificates openssl && update-ca-certificates
+    && apk add --update ca-certificates openssl && update-ca-certificates  \
 	&& wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz \
 	&& wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz.sig \
 	&& apk add --update --no-progress --virtual gpg gnupg \
