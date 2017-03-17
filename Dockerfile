@@ -10,8 +10,8 @@ ENV S6_VERSION 1.19.1.1
 
 RUN set -xe \
 && cd /tmp \
-	&& wget https://github.com/just-containers/s6-overlay/releases/tag/v$S6_VERSION/s6-overlay-amd64.tar.gz \
-	&& wget https://github.com/just-containers/s6-overlay/releases/tag:x/v$S6_VERSION/s6-overlay-amd64.tar.gz.sig \
+	&& wget https://github.com/just-containers/s6-overlay/releases/download/vS6_VERSION/s6-overlay-amd64.tar.gz \
+	&& wget https://github.com/just-containers/s6-overlay/releases/download/vS6_VERSION/s6-overlay-amd64.tar.gz.sig \
 	&& apk add --update --no-progress --virtual gpg gnupg \
 	&& wget -q -O - https://keybase.io/justcontainers/key.asc | gpg --import \
 	&& gpg --verify /tmp/s6-overlay-amd64.tar.gz.sig /tmp/s6-overlay-amd64.tar.gz \
