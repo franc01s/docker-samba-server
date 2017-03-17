@@ -6,6 +6,7 @@ ENV GID 1000
 ENV GROUP samba
 ENV PASSWORD password
 ENV CONFIG /config/smb.conf
+ENV S6_VERSION 1.19.1.1
 
 RUN set -xe \
 && cd /tmp \
@@ -18,7 +19,6 @@ RUN set -xe \
 	&& apk del gpg \
 	&& rm -rf /tmp/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz.sig /root/.gnupg /var/cache/apk/*
 
-ENV S6_VERSION 1.18.1.5
 
 COPY run.s6 /etc/services.d/samba/run
 COPY finish.s6 /etc/services.d/samba/finish
